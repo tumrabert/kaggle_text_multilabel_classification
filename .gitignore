@@ -1,3 +1,6 @@
-kaggle_submission2.csv
-main.py
-notebook_content.txtW
+#.gitignore file
+*.csv
+
+*.py
+
+*.txt
