@@ -1,0 +1,129 @@
+**CODE BLOCK**
+import pandas as pd
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import SGDClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import LinearSVC
+
+from sklearn.multiclass import OneVsRestClassifier
+**CODE BLOCK**
+import pandas as pd
+
+json_file_path = 'train_for_student.json'
+df = pd.read_json(json_file_path)
+df = df.T
+
+**CODE BLOCK**
+df.head()
+df["CONTEXT"]=df['Title']+". "+df["Abstract"]
+**CODE BLOCK**
+df.drop(df.columns[0:2], axis=1, inplace=True)
+
+**CODE BLOCK**
+df=df[['CONTEXT','Classes']]
+**CODE BLOCK**
+df
+**CODE BLOCK**
+y=df['Classes']
+**CODE BLOCK**
+y
+**CODE BLOCK**
+multilabel = MultiLabelBinarizer()
+y = multilabel.fit_transform(df['Classes'])
+y
+**CODE BLOCK**
+y[0]
+**CODE BLOCK**
+multilabel.classes_
+**CODE BLOCK**
+len(multilabel.classes_)
+**CODE BLOCK**
+CLASSES_ARRANGE = ['CE', 'ENV', 'BME', 'PE', 'METAL', 'ME', 'EE',
+               'CPE', 'OPTIC', 'NANO', 'CHE', 'MATENG', 'AGRI',
+               'EDU', 'IE', 'SAFETY', 'MATH', 'MATSCI']
+**CODE BLOCK**
+new_y=pd.DataFrame(y, columns=multilabel.classes_)
+**CODE BLOCK**
+# Splitting the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(df['CONTEXT'], new_y, test_size=0.2, random_state=0)
+**CODE BLOCK**
+f1_scorer = make_scorer(f1_score, average='weighted')
+**CODE BLOCK**
+pipeline = Pipeline([
+    ('tfidf', TfidfVectorizer(analyzer='word', max_features=1000)),
+    ('clf', OneVsRestClassifier(LinearSVC(), n_jobs=1)),
+])
+**CODE BLOCK**
+parameters = {
+    'tfidf__max_df': (0.75, 0.85, 0.95),
+    'tfidf__min_df': (0.01, 0.05, 0.1),
+    'clf__estimator__C': (0.01, 0.1, 1, 10, 100,1000,10000),  # Increased range for C
+}
+**CODE BLOCK**
+# Grid search to find the best parameters for both the vectorizer and the classifier
+grid_search_tune = GridSearchCV(pipeline, parameters, cv=2, scoring=f1_scorer, verbose=2)
+grid_search_tune.fit(X_train, y_train)
+
+print("Best parameters set:")
+print(grid_search_tune.best_estimator_.steps)
+**CODE BLOCK**
+# Prediction & Evaluation
+y_pred = grid_search_tune.predict(X_test)
+**CODE BLOCK**
+def print_score(y_true, y_pred):
+    print('F1 score: {:.2f}'.format(f1_score(y_true, y_pred, average='weighted')))
+    print('Recall score: {:.2f}'.format(recall_score(y_true, y_pred, average='weighted')))
+    # Add more metrics here if needed
+
+print_score(y_test, y_pred)
+**CODE BLOCK**
+json_file_path = 'test_for_student.json'
+test_df = pd.read_json(json_file_path)
+test_df = test_df.T
+test_df["CONTEXT"]=test_df['Title']+'. '+test_df["Abstract"]
+test_df.drop(test_df.columns[0:2], axis=1, inplace=True)
+**CODE BLOCK**
+test_df.head()
+**CODE BLOCK**
+test_predictions = grid_search_tune.predict(test_df['CONTEXT'])
+print(test_predictions)
+**CODE BLOCK**
+classes_array = multilabel.classes_.tolist()
+**CODE BLOCK**
+columns = ['id']+classes_array
+data = []
+
+# Enumerate through predictions
+for i, pred in enumerate(test_predictions):
+    # Create a row with id and predictions
+    row = ['{:03d}eval'.format(i+1)] + list(pred)
+    data.append(row)
+
+new_df = pd.DataFrame(data, columns=columns)
+print(new_df)
+
+**CODE BLOCK**
+# Rearrange the columns of the DataFrame
+new_df = new_df[['id'] + CLASSES_ARRANGE]
+
+# Print the rearranged DataFrame
+print(new_df)
+**CODE BLOCK**
+row_sums = new_df.iloc[:, 1:].sum(axis=1)
+#print(row_sums)
+# Check how many of these sums are equal to 0
+num_rows_with_sum_zero = (row_sums == 0).sum()
+
+print(num_rows_with_sum_zero,max(row_sums))
+**CODE BLOCK**
+
+# Assuming 'new_df' is your DataFrame to be saved
+path='kaggle_submission2.csv'
+# Save DataFrame to CSV
+new_df.to_csv(path, index=False)
+
+print("DataFrame saved to 'kaggle_submission.csv'")
