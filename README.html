@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="research-paper-multilable-classification-project">Research Paper Multilable Classification Project</h1>
+<p>This repository contains code for a Kaggle competition project focused on classifying research papers into multiple subject areas. The project utilizes both traditional and deep learning approaches.</p>
+<h1 id="chapter-1--introduction">Chapter 1 : <strong>Introduction</strong></h1>
+<h2 id="project-purpose">Project Purpose</h2>
+<p>The purpose of this project is to classify research papers into 18 subject areas</p>
+<ul>
+<li>CE - Civil Engineering</li>
+<li>ENV- Environmental Engineering</li>
+<li>BME - Biomedical Engineering</li>
+<li>PE - Petroleum Engineering</li>
+<li>METAL- Metallurgical Engineering</li>
+<li>ME - Mechanical Engineering</li>
+<li>EE - Electrical Engineering</li>
+<li>CPE - Computer Engineering</li>
+<li>OPTIC - Optical Engineering</li>
+<li>NANO - Nano Engineering</li>
+<li>CHE - Chemical Engineering</li>
+<li>MATENG - Materials Engineering</li>
+<li>AGRI - Agricultural Engineering</li>
+<li>EDU - Education</li>
+<li>IE - Industrial Engineering</li>
+<li>SAFETY - Safety Engineering</li>
+<li>MATH - Mathematics and Statistics</li>
+<li>MATSCI - Material Science</li>
+</ul>
+<p>This type of classification supports researchers in finding relevant literature, improves search results in academic databases, and helps to organize collections of scientific publications.</p>
+<h2 id="multi-label-classification">Multi-label Classification</h2>
+<p>Multi-label classification is employed in this project due to the potential for research papers to belong to multiple subject areas simultaneously (e.g., a paper at the intersection of Biomedical Engineering and Nanotechnology).</p>
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#chapter-1-introduction">Chapter 1: Introduction</a></li>
+<li><a href="#chapter-2-data-preparation">Chapter 2: Data preparation</a></li>
+<li><a href="#chapter-3-model">Chapter 3: Model</a></li>
+<li><a href="#chapter-4-results">Chapter 4: Results</a></li>
+<li><a href="#chapter-5-discussion">Chapter 5: Discussion</a></li>
+<li><a href="#chapter-6-conclusion">Chapter 6: Conclusion</a></li>
+</ul>
+<hr>
+<h1 id="chapter-2-data-preparation">Chapter 2: <strong>Data preparation</strong></h1>
+<h2 id="data-source">Data Source:</h2>
+<p>This project utilizes a dataset containing 454 research paper samples, including titles, abstracts, and corresponding class labels. The data is provided in JSON format and is divided into two files:</p>
+<ul>
+<li><strong>train_for_student.json</strong>: This file contains the training dataset, which will be used to build the machine learning models.</li>
+<li><strong>test_for_student.json</strong>: This file contains the testing dataset, used to evaluate the performance of the trained models.
+<strong>JSON Structure</strong></li>
+</ul>
+<p>Each JSON files has the following structure:</p>
+<ul>
+<li>Top-Level Object: The entire dataset is represented as a single JSON object.</li>
+<li>Individual Records: Within the top-level object, each research paper sample is represented as a key-value entry.
+<ul>
+<li>Key: A unique identifier for the sample (e.g., &quot;001&quot;, &quot;002eval&quot;).</li>
+<li>Value: An object containing the following information about the research paper:
+<ul>
+<li>Title: The title of the research paper.</li>
+<li>Abstract: Abstarct of the research paper.</li>
+<li>Classes: A list of classes/categories the research paper belongs to (e.g., &quot;CHE&quot;, &quot;MATENG&quot;, &quot;CPE&quot;).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>train_for_student.json</strong></p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"001"</span>: {
+        <span class="hljs-attr">"Title"</span>: <span class="hljs-string">"Activated carbon derived from bacterial cellulose and its use as catalyst support for ethanol conversion to ethylene"</span>,
+        <span class="hljs-attr">"Abstract"</span>: <span class="hljs-string">"\u00a9 2019 Elsevier B.V.Activated carbon derived from bacterial cellulose (BC-AC) ..."</span>,
+        <span class="hljs-attr">"Classes"</span>: [
+            <span class="hljs-string">"CHE"</span>,
+            <span class="hljs-string">"MATENG"</span>
+        ]
+    },
+    <span class="hljs-attr">"002"</span>: {
+        <span class="hljs-attr">"Title"</span>: <span class="hljs-string">"The algorithm of static hand gesture recognition using rule-based classification"</span>,
+        <span class="hljs-attr">"Abstract"</span>: <span class="hljs-string">"\u00a9 Springer International Publishing AG 2018.Technology becomes a part of ..."</span>,
+        <span class="hljs-attr">"Classes"</span>: [
+            <span class="hljs-string">"CPE"</span>
+        ]
+    },
+    ...
+}
+</div></code></pre>
+<p><strong>test_for_student.json</strong></p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"001eval"</span>: {
+        <span class="hljs-attr">"Title"</span>: <span class="hljs-string">"Comparative Electrical Energy Yield Performance of Micro-Inverter PV Systems Using a Machine Learning Approach Based on a Mixed-Effect Model of Real Datasets"</span>,
+        <span class="hljs-attr">"Abstract"</span>: <span class="hljs-string">"\u00a9 2013 IEEE.Long-term energy evaluation of PV systems that use micro-inverter ..."</span>
+    },
+    <span class="hljs-attr">"002eval"</span>: {
+        <span class="hljs-attr">"Title"</span>: <span class="hljs-string">"Effects of graphene nanoplatelets on bio-based shape memory polymers from benzoxazine/epoxy copolymers actuated by near-infrared light"</span>,
+        <span class="hljs-attr">"Abstract"</span>: <span class="hljs-string">"\u00a9 The Author(s) 2021.Novel near-infrared (NIR) light-induced bio-based shape ..."</span>
+    },
+    ...
+
+}
+</div></code></pre>
+<h2 id="preprocessing-steps">Preprocessing Steps:</h2>
+<ol>
+<li>Target Class Encoding</li>
+</ol>
+<ul>
+<li>
+<p>I employed multi-label binarization to transform the target classes into a binary matrix representation. This format is suitable for multi-label classification, where each column signifies a potential class.</p>
+<pre class="hljs"><code><div>multilabel = MultiLabelBinarizer()
+y = multilabel.fit_transform(df[<span class="hljs-string">'Classes'</span>])
+</div></code></pre>
+</li>
+</ul>
+<ol start="2">
+<li>Feature Engineering</li>
+</ol>
+<ul>
+<li>I utilized TF-IDF (Term Frequency-Inverse Document Frequency) to convert the textual data (titles and abstracts) into numerical vectors. TF-IDF highlights the importance of words within a document relative to their frequency across the entire dataset.</li>
+</ul>
+<h2 id="data-splitting">Data Splitting:</h2>
+<p>I implemented an 80/20 train/test split. This ensures a sufficient amount of data for model training while reserving a portion for unbiased performance evaluation.</p>
+<hr>
+<h1 id="chapter-3-model">Chapter 3: Model</h1>
+<h3 id="data-pipeline">Data Pipeline</h3>
+<h4 id="the-purpose-of-a-pipeline">The Purpose of a Pipeline</h4>
+<ul>
+<li><strong>Streamlining</strong>: Pipelines chain together multiple steps involved in a machine learning process, from data preprocessing to model training. This creates a more organized and reproducible workflow.</li>
+<li><strong>Modularity</strong>: Individual components of the pipeline (e.g., feature extractors, classification algorithms) can be easily replaced or modified. This flexibility supports experimentation and optimization.</li>
+<li><strong>Hyperparameter Optimization</strong>: Pipelines integrate seamlessly with tools like GridSearchCV, allowing you to tune parameters across all the steps simultaneously.</li>
+</ul>
+<h4 id="components-of-pipeline">Components of Pipeline</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> sklearn.pipeline <span class="hljs-keyword">import</span> Pipeline
+pipeline = Pipeline([
+    (<span class="hljs-string">'tfidf'</span>, TfidfVectorizer(analyzer=<span class="hljs-string">'word'</span>, max_features=<span class="hljs-number">1000</span>)),
+    (<span class="hljs-string">'clf'</span>, OneVsRestClassifier(LinearSVC(), n_jobs=<span class="hljs-number">1</span>)),
+])
+</div></code></pre>
+<ol>
+<li><strong>Feature Engineering</strong>: ('tfidf', TfidfVectorizer(analyzer='word', max_features=1000))</li>
+</ol>
+<ul>
+<li>
+<p><strong>TF-IDF</strong>: Stands for Term Frequency - Inverse Document Frequency. This is a classic technique for representing text as numerical vectors. It emphasizes words that are important within a document and rare across the entire collection, helping to identify distinctive terms for each subject area.</p>
+</li>
+<li>
+<p><strong>analyzer='word'</strong>: Tokenizes the text into individual words. This makes sense for general language, but for specialized research papers, you might experiment with character-level or n-gram tokenization.</p>
+</li>
+<li>
+<p><strong>max_features=1000</strong>: Limits the vocabulary to the 1000 most frequent words. This helps control the vector dimensions and can prevent overfitting on rare terms.</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>Multi-label Classification</strong>: ('clf', OneVsRestClassifier(LinearSVC(), n_jobs=1))</li>
+</ol>
+<ul>
+<li>
+<p>OneVsRestClassifier: A meta-classifier that adapts traditional binary classifiers (like LinearSVC) to handle multi-label problems. It trains one classifier per possible label in your dataset.</p>
+</li>
+<li>
+<p>LinearSVC: A support vector machine for classification. Linear SVCs often work well with text data due to its high-dimensional nature. They are also relatively fast to train and can be interpretable.</p>
+</li>
+<li>
+<p>n_jobs=1: Specifies that training should happen on a single CPU core. Increase this if you have more cores available for faster processing.</p>
+</li>
+</ul>
+<h3 id="model-choice-and-rationale">Model Choice and Rationale:</h3>
+<p>I selected LinearSVC within a OneVsRestClassifier for multi-label classification. Linear models are often a good baseline due to their speed and interpretability, making them suitable for understanding text features important for classification.</p>
+<p><img src="img/model.png" alt="model"></p>
+<h3 id="hyperparameter-tuning">Hyperparameter Tuning:</h3>
+<ul>
+<li>Method: GridSearchCV with Cross-Validation</li>
+<li>Parameter Grid</li>
+</ul>
+<pre class="hljs"><code><div>parameters = {
+    <span class="hljs-string">'tfidf__max_df'</span>: (<span class="hljs-number">0.75</span>, <span class="hljs-number">0.85</span>, <span class="hljs-number">0.95</span>),
+    <span class="hljs-string">'tfidf__min_df'</span>: (<span class="hljs-number">0.01</span>, <span class="hljs-number">0.05</span>, <span class="hljs-number">0.1</span>),
+    <span class="hljs-string">'clf__estimator__C'</span>: (<span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">10000</span>)
+}
+</div></code></pre>
+<p>Explanation of Parameters</p>
+<ul>
+<li>
+<p><strong>tfidf__max_df</strong>: Controls the maximum proportion of documents a term can appear in.</p>
+</li>
+<li>
+<p><strong>tfidf__min_df</strong>: Controls the minimum number of documents a term must appear in.</p>
+</li>
+<li>
+<p><strong>clf</strong>__<strong>estimator</strong>__<strong>C</strong>: Regularization strength in the LinearSVC classifier. Larger values mean less regularization.</p>
+</li>
+<li>
+<p>Best Parameters</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>[(<span class="hljs-string">'tfidf'</span>, TfidfVectorizer(max_df=<span class="hljs-number">0.85</span>, max_features=<span class="hljs-number">1000</span>, min_df=<span class="hljs-number">0.01</span>)), (<span class="hljs-string">'clf'</span>, OneVsRestClassifier(estimator=LinearSVC(C=<span class="hljs-number">100</span>), n_jobs=<span class="hljs-number">1</span>))]
+
+</div></code></pre>
+<hr>
+<h1 id="chapter-4-results">Chapter 4: <strong>Results</strong></h1>
+<h3 id="performance-metrics">Performance Metrics:</h3>
+<p>Used F1-score (weighted) and recall (weighted) as they are well-suited for multi-label problems where class imbalance might exist.</p>
+<p><strong>Scores</strong></p>
+<p>F1 score: 0.54</p>
+<p>Recall score: 0.50</p>
+<h3 id="confusion-matrix-of-every-classes">Confusion Matrix of every classes:</h3>
+<p>Confusion matrices for each class provide a detailed breakdown of the model's predictions.</p>
+<p><a href="https://github.com/tumrabert/kaggle_text_multilabel_classification/tree/main/img/confusion_matrices">Link to Folder of image</a></p>
+<h3 id="kaggle-screenshot">Kaggle Screenshot:</h3>
+<p>Image of Kaggle Submission and Score</p>
+<p><img src="img/kaggle.png" alt="kaggle_result"></p>
+<h3 id="interpretation">Interpretation</h3>
+<ul>
+<li>
+<p>Baseline Acknowledgement:</p>
+<p>The model demonstrates baseline functionality, indicating it has learned patterns for classifying research papers. However, the scores suggest substantial room for improvement.</p>
+</li>
+</ul>
+<hr>
+<h1 id="chapter-5-discussion">Chapter 5: <strong>Discussion</strong></h1>
+<h3 id="improvement-strategies">Improvement Strategies:</h3>
+<ul>
+<li>Alternative Models:</li>
+</ul>
+<p>Experimenting with tree-based ensembles (e.g., Random Forest, XGBoost) or transformer-based models (e.g., BERT, RoBERTa) could improve performance. These models often excel at capturing complex patterns and non-linear relationships in text data.</p>
+<ul>
+<li>Feature Engineering:</li>
+</ul>
+<p>Exploring techniques like word embeddings (e.g., Word2Vec, GloVe) or topic modeling (e.g., LDA) might provide richer and more informative text representations for classification.</p>
+<ul>
+<li>Data Augmentation:</li>
+</ul>
+<p>If permitted by the competition, techniques to increase dataset size and diversity could boost performance.</p>
+<h2 id="chapter-6-conclusion">Chapter 6: <strong>Conclusion</strong></h2>
+<h3 id="key-findings">Key Findings:</h3>
+<p>This project successfully demonstrates the feasibility of multi-label classification for research papers. While the initial linear model establishes a baseline, the results highlight the potential for significant improvement by exploring the strategies outlined above.</p>
+<h3 id="challenges-and-future-directions">Challenges and Future Directions:</h3>
+<p>A key challenge faced in this project was the limited amount of labeled data.</p>
+<p>Future work should prioritize addressing this limitation. Additionally, investigating the use of advanced deep learning models and sophisticated feature engineering techniques promises a path toward building more accurate classification systems.</p>
+
+</body>
+</html>

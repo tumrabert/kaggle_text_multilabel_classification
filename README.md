@@ -165,7 +165,7 @@ pipeline = Pipeline([
 
 I selected LinearSVC within a OneVsRestClassifier for multi-label classification. Linear models are often a good baseline due to their speed and interpretability, making them suitable for understanding text features important for classification.
 
-![model](/img/model.png)
+![model](img/model.png)
 
 ### Hyperparameter Tuning:
 
@@ -211,13 +211,13 @@ Recall score: 0.50
 
 Confusion matrices for each class provide a detailed breakdown of the model's predictions.
 
-[Link to Folder of image](https://github.com/tumrabert/kaggle_text_multilable_classification/tree/main/img/confusion_matrices)
+[Link to Folder of image](https://github.com/tumrabert/kaggle_text_multilabel_classification/tree/main/img/confusion_matrices)
 
 ### Kaggle Screenshot:
 
 Image of Kaggle Submission and Score
 
-![kaggle_result](/img/kaggle.png)
+![kaggle_result](img/kaggle.png)
 
 ### Interpretation
 
