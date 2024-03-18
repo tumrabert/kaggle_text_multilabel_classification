@@ -1,12 +1,12 @@
 # Research Paper Multilable Classification Project
 
-This repository contains code for a Kaggle competition on classifying research papers into multiple subject areas using both traditional and deep learning approaches.
+This repository contains code for a Kaggle competition project focused on classifying research papers into multiple subject areas. The project utilizes both traditional and deep learning approaches.
 
 # Chapter 1 : **Introduction**
 
 ## Project Purpose
 
-Classified research papers into 18 classes subject areas including
+The purpose of this project is to classify research papers into 18 subject areas
 
 - CE - Civil Engineering
 - ENV- Environmental Engineering
@@ -31,11 +31,17 @@ This type of classification supports researchers in finding relevant literature,
 
 ## Multi-label Classification
 
-I use multi-label classification because a research paper is belong to multiple subject areas. For example, a paper might intersect Biomedical Engineering and Nano technology.
+Multi-label classification is employed in this project due to the potential for research papers to belong to multiple subject areas simultaneously (e.g., a paper at the intersection of Biomedical Engineering and Nanotechnology).
 
 ## Project Structure
 
-This report delves into data preparation, model development, results analysis, discussion of potential improvements, and conclusions.
+This report provides a comprehensive overview of the project, including:
+
+- [Data preparation](#chapter-2-data-preparation)
+- [Model development](#chapter-3-model-development)
+- [Results analysis](#chapter-4-results-analysis)
+- [Discussion of potential improvements](#chapter-5-discussion-of-potential-improvements)
+- [Conclusions](#chapter-6-conclusions)
 
 ---
 
@@ -201,6 +207,10 @@ F1 score: 0.54
 
 Recall score: 0.50
 
+### Confusion Matrix of every classes:
+
+[Link to Folder](https://github.com/tumrabert/kaggle_text_multilable_classification/tree/main/img/confusion_matrices)
+
 ### Kaggle Screenshot:
 
 ![kaggle_result](/img/kaggle.png)
@@ -213,15 +223,19 @@ Recall score: 0.50
 
 ## Chapter 5: Discussion
 
-### Error Analysis:
-
-[Link to Folder](https://github.com/tumrabert/kaggle_text_multilable_classification/img/confusion_matrices/)
-
 ### Improvement Strategies:
 
-- Alternative Models: Tree-based ensembles (e.g., Random Forest) or Transformers (e.g., BERT) might handle complexities and interactions within the text data better.
-- Feature Engineering: Exploring word embeddings or topic modeling could provide richer representations.
-- Data Augmentation: If permitted by the competition, techniques to increase dataset size and diversity could boost performance.
+- Alternative Models:
+
+Tree-based ensembles (e.g., Random Forest) or Transformers (e.g., BERT) might handle complexities and interactions within the text data better.
+
+- Feature Engineering:
+
+Exploring word embeddings or topic modeling could provide richer representations.
+
+- Data Augmentation:
+
+If permitted by the competition, techniques to increase dataset size and diversity could boost performance.
 
 ## Chapter 6: Conclusion
 
