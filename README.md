@@ -33,15 +33,14 @@ This type of classification supports researchers in finding relevant literature,
 
 Multi-label classification is employed in this project due to the potential for research papers to belong to multiple subject areas simultaneously (e.g., a paper at the intersection of Biomedical Engineering and Nanotechnology).
 
-## Project Structure
+**Table of Contents**
 
-This report provides a comprehensive overview of the project, including:
-
-- [Data preparation](#chapter-2-data-preparation)
-- [Model development](#chapter-3-model-development)
-- [Results analysis](#chapter-4-results-analysis)
-- [Discussion of potential improvements](#chapter-5-discussion-of-potential-improvements)
-- [Conclusions](#chapter-6-conclusions)
+- [Chapter 1: Introduction](#chapter-1-introduction)
+- [Chapter 2: Data preparation](#chapter-2-data-preparation)
+- [Chapter 3: Model](#chapter-3-model)
+- [Chapter 4: Results](#chapter-4-results)
+- [Chapter 5: Discussion](#chapter-5-discussion)
+- [Chapter 6: Conclusion](#chapter-6-conclusion)
 
 ---
 
@@ -125,7 +124,7 @@ I use an 80/20 train/test split to ensure enough data for model training while a
 
 ---
 
-## Chapter 3: Model
+# Chapter 3: Model
 
 ### Data Pipeline
 
@@ -195,7 +194,7 @@ Explanation of Parameters
 
 ---
 
-## Chapter 4: Results
+# Chapter 4: **Results**
 
 ### Performance Metrics:
 
@@ -221,7 +220,7 @@ Recall score: 0.50
 
 ---
 
-## Chapter 5: Discussion
+# Chapter 5: **Discussion**
 
 ### Improvement Strategies:
 
@@ -237,7 +236,7 @@ Exploring word embeddings or topic modeling could provide richer representations
 
 If permitted by the competition, techniques to increase dataset size and diversity could boost performance.
 
-## Chapter 6: Conclusion
+## Chapter 6: **Conclusion**
 
 ### Key Findings:
 
