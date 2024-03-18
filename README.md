@@ -48,12 +48,11 @@ Multi-label classification is employed in this project due to the potential for 
 
 ## Data Source:
 
-This dataset contains 454 research paper samples, including their titles, abstracts, and class labels. The data is provided in JSON format, split into two files:
+This project utilizes a dataset containing 454 research paper samples, including titles, abstracts, and corresponding class labels. The data is provided in JSON format and is divided into two files:
 
-- **train_for_student.json**: The training dataset used to build machine learning models.
-- **test_for_student.json**: The testing dataset used to evaluate the performance of trained models.
-
-**JSON Structure**
+- **train_for_student.json**: This file contains the training dataset, which will be used to build the machine learning models.
+- **test_for_student.json**: This file contains the testing dataset, used to evaluate the performance of the trained models.
+  **JSON Structure**
 
 Each JSON files has the following structure:
 
@@ -107,20 +106,22 @@ Each JSON files has the following structure:
 
 ## Preprocessing Steps:
 
-- Turn target classes into a binary matrix representation where each column represents a possible class
+1. Target Class Encoding
+
+- I employed multi-label binarization to transform the target classes into a binary matrix representation. This format is suitable for multi-label classification, where each column signifies a potential class.
 
   ```python
   multilabel = MultiLabelBinarizer()
   y = multilabel.fit_transform(df['Classes'])
   ```
 
-- Feature Engineering:
+2. Feature Engineering
 
-  Used TF-IDF (Term Frequency-Inverse Document Frequency) to represent the texts as numerical vectors.
+- I utilized TF-IDF (Term Frequency-Inverse Document Frequency) to convert the textual data (titles and abstracts) into numerical vectors. TF-IDF highlights the importance of words within a document relative to their frequency across the entire dataset.
 
 ## Data Splitting:
 
-I use an 80/20 train/test split to ensure enough data for model training while allowing for robust evaluation.
+I implemented an 80/20 train/test split. This ensures a sufficient amount of data for model training while reserving a portion for unbiased performance evaluation.
 
 ---
 
@@ -131,7 +132,7 @@ I use an 80/20 train/test split to ensure enough data for model training while a
 #### The Purpose of a Pipeline
 
 - **Streamlining**: Pipelines chain together multiple steps involved in a machine learning process, from data preprocessing to model training. This creates a more organized and reproducible workflow.
-- **Modularity**: Easily swap out individual components (e.g., try a different vectorizer or classifier) within the pipeline.
+- **Modularity**: Individual components of the pipeline (e.g., feature extractors, classification algorithms) can be easily replaced or modified. This flexibility supports experimentation and optimization.
 - **Hyperparameter Optimization**: Pipelines integrate seamlessly with tools like GridSearchCV, allowing you to tune parameters across all the steps simultaneously.
 
 #### Components of Pipeline
@@ -162,7 +163,7 @@ pipeline = Pipeline([
 
 ### Model Choice and Rationale:
 
-Employed LinearSVC within a OneVsRestClassifier for multi-label classification. Linear models are often a good baseline due to their speed and interpretability, making them suitable for understanding text features important for classification.
+I selected LinearSVC within a OneVsRestClassifier for multi-label classification. Linear models are often a good baseline due to their speed and interpretability, making them suitable for understanding text features important for classification.
 
 ![model](/img/model.png)
 
@@ -208,15 +209,21 @@ Recall score: 0.50
 
 ### Confusion Matrix of every classes:
 
-[Link to Folder](https://github.com/tumrabert/kaggle_text_multilable_classification/tree/main/img/confusion_matrices)
+Confusion matrices for each class provide a detailed breakdown of the model's predictions.
+
+[Link to Folder of image](https://github.com/tumrabert/kaggle_text_multilable_classification/tree/main/img/confusion_matrices)
 
 ### Kaggle Screenshot:
+
+Image of Kaggle Submission and Score
 
 ![kaggle_result](/img/kaggle.png)
 
 ### Interpretation
 
-- Baseline Acknowledgement: The results indicate a functional model that's learned to classify research papers to some degree. However, there's significant room for improvement.
+- Baseline Acknowledgement:
+
+  The model demonstrates baseline functionality, indicating it has learned patterns for classifying research papers. However, the scores suggest substantial room for improvement.
 
 ---
 
@@ -226,11 +233,11 @@ Recall score: 0.50
 
 - Alternative Models:
 
-Tree-based ensembles (e.g., Random Forest) or Transformers (e.g., BERT) might handle complexities and interactions within the text data better.
+Experimenting with tree-based ensembles (e.g., Random Forest, XGBoost) or transformer-based models (e.g., BERT, RoBERTa) could improve performance. These models often excel at capturing complex patterns and non-linear relationships in text data.
 
 - Feature Engineering:
 
-Exploring word embeddings or topic modeling could provide richer representations.
+Exploring techniques like word embeddings (e.g., Word2Vec, GloVe) or topic modeling (e.g., LDA) might provide richer and more informative text representations for classification.
 
 - Data Augmentation:
 
@@ -240,12 +247,10 @@ If permitted by the competition, techniques to increase dataset size and diversi
 
 ### Key Findings:
 
-I demonstrated the feasibility of multi-label classification for research papers. Linear models provide a good starting point, but there's potential for significant improvement.
+This project successfully demonstrates the feasibility of multi-label classification for research papers. While the initial linear model establishes a baseline, the results highlight the potential for significant improvement by exploring the strategies outlined above.
 
-### Challenges:
+### Challenges and Future Directions:
 
-Obtaining more labeled data was a key challenge.
+A key challenge faced in this project was the limited amount of labeled data.
 
-### Future Directions:
-
-Investigating advanced deep learning models and sophisticated feature engineering techniques would be the next step.
+Future work should prioritize addressing this limitation. Additionally, investigating the use of advanced deep learning models and sophisticated feature engineering techniques promises a path toward building more accurate classification systems.
